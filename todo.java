@@ -4,18 +4,16 @@ public class todo {
 public static void main(String[] args) {
     System.out.println("\u001b[33m-------------------    Welcome to Pepper   -------------------\u001b[37m");
     System.out.println("\u001b[33mThe Go-To To-Do command line interface for software engineers!\n\u001b[37m");
-/*  
-    ANSI Color Codes:
-        Black: \u001b[30m
-        Red: \u001b[31m
-        Green: \u001b[32m
-        Yellow: \u001b[33m
-        Blue: \u001b[34m
-        Magenta: \u001b[35m
-        Cyan: \u001b[36m
-        White: \u001b[37m
-        Reset: \u001b[0m
-*/
+
+    final String COLOR_BLACK = "\u001b[30m";
+    final String COLOR_RED = "\u001b[31m";
+    final String COLOR_GREEN = "\u001b[32m";
+    final String COLOR_YELLOW = "\u001b[33m";
+    final String COLOR_BLUE = "\u001b[34m";
+    final String COLOR_MAGENTA = "\u001b[35m";
+    final String COLOR_CYAN = "\u001b[36m";
+    final String COLOR_WHITE = "\u001b[37m";
+    final String COLOR_RESET = "\u001b[0m";
 
     Scanner input = new Scanner(System.in);
 
@@ -27,22 +25,22 @@ public static void main(String[] args) {
     while (choice != 3) {
 
         System.out.println();
-        System.out.println("\u001b[33mTo view list of commands type 1\u001b[37m");
-        System.out.println("\u001b[33mOtherwise select option: \u001b[37m");
+        System.out.println(COLOR_YELLOW + "To view list of commands type 1" + COLOR_RESET);
+        System.out.println(COLOR_YELLOW + "Otherwise select option: " + COLOR_RESET);
         choice = input.nextInt();
         int count = 0;
 
         if (choice == 1) {
-            System.out.println("\u001b[33mCommands: \n - 1: View list of commands\n\u001b[37m");
-            System.out.println("\u001b[33m - 2: Add Task\n\u001b[37m");
-            System.out.println("\u001b[33m - 3: List Existing Tasks");
+            System.out.println(COLOR_YELLOW + "Commands: \n - 1: View list of commands\n" + COLOR_RESET);
+            System.out.println(COLOR_YELLOW + " - 2: Add Task\n" + COLOR_RESET);
+            System.out.println(COLOR_YELLOW + " - 3: List Existing Tasks");
         }
 
         if (choice == 2) {
-            System.out.println("\u001b[33mAdd New Tasks, when done type done\n");
+            System.out.println(COLOR_YELLOW + "Add New Tasks, when done type done\n");
             for (int i=0;i<MAX;i++) {
                 list[i] = input.nextLine();
-                if (list[i].equals("done")) break;
+                if (list[i].equals(COLOR_GREEN + "done")) break;
                 count++;
             }
         }
