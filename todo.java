@@ -2,8 +2,6 @@ import java.util.Scanner;
 
 public class todo {
 public static void main(String[] args) {
-    System.out.println("\u001b[33m-------------------    Welcome to Pepper   -------------------\u001b[37m");
-    System.out.println("\u001b[33mThe Go-To To-Do command line interface for software engineers!\n\u001b[37m");
 
     final String COLOR_BLACK = "\u001b[30m";
     final String COLOR_RED = "\u001b[31m";
@@ -14,6 +12,16 @@ public static void main(String[] args) {
     final String COLOR_CYAN = "\u001b[36m";
     final String COLOR_WHITE = "\u001b[37m";
     final String COLOR_RESET = "\u001b[0m";
+
+    final String TEXT_BOLD = "\033[1m";
+    final String TEXT_UNDERLINE = "\033[4m";
+    final String TEXT_RESET = "\033[0m";
+    final String CHECK_MARK = "\u2713";
+    final String X_MARK = "\u2717";
+    final String BULLET_MARK = "\u2022";
+
+    System.out.println(COLOR_YELLOW + TEXT_BOLD + "-------------------    Welcome to Pepper   -------------------" + TEXT_RESET);
+    System.out.println(COLOR_YELLOW + TEXT_UNDERLINE + "The Go-To To-Do command line interface for software engineers!\n" + TEXT_RESET);
 
     Scanner input = new Scanner(System.in);
 
@@ -31,16 +39,16 @@ public static void main(String[] args) {
         int count = 0;
 
         if (choice == 1) {
-            System.out.println(COLOR_YELLOW + "Commands: \n - 1: View list of commands\n" + COLOR_RESET);
-            System.out.println(COLOR_YELLOW + " - 2: Add Task\n" + COLOR_RESET);
-            System.out.println(COLOR_YELLOW + " - 3: List Existing Tasks");
+            System.out.println(COLOR_YELLOW + "Commands: \n" + CHECK_MARK + " 1: View list of commands\n" + COLOR_RESET);
+            System.out.println(COLOR_YELLOW + X_MARK + " 2: Add Task\n" + COLOR_RESET);
+            System.out.println(COLOR_YELLOW + BULLET_MARK + " 3: List Existing Tasks");
         }
 
         if (choice == 2) {
             System.out.println(COLOR_YELLOW + "Add New Tasks, when done type done\n");
             for (int i=0;i<MAX;i++) {
                 list[i] = input.nextLine();
-                if (list[i].equals(COLOR_GREEN + "done")) break;
+                if (list[i].equals("done")) break;
                 count++;
             }
         }
