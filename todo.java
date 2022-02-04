@@ -28,36 +28,48 @@ public static void main(String[] args) {
     final int MAX = 10;
 
     String[] list = new String[MAX];
-    int choice = 0;
+    String choice = "";
 
-    while (choice != 3) {
+    while (choice.equals("")) {
 
         System.out.println();
-        System.out.println(COLOR_YELLOW + "To view list of commands type 1" + COLOR_RESET);
+        System.out.println(COLOR_YELLOW + "To view list of commands type 'help' " + COLOR_RESET);
         System.out.println(COLOR_YELLOW + "Otherwise select option: " + COLOR_RESET);
-        choice = input.nextInt();
+        choice = input.next();
         int count = 0;
 
-        if (choice == 1) {
-            System.out.println(COLOR_YELLOW + "Commands: \n" + CHECK_MARK + " 1: View list of commands\n" + COLOR_RESET);
-            System.out.println(COLOR_YELLOW + X_MARK + " 2: Add Task\n" + COLOR_RESET);
-            System.out.println(COLOR_YELLOW + BULLET_MARK + " 3: List Existing Tasks");
+        // 'help' command //
+        if (choice.equals(("help").toLowerCase())) {
+            System.out.println(COLOR_CYAN + "Commands: \n\n" + "   help    View reference page of commands");
+            System.out.println(COLOR_CYAN + "   add     Add new task (include author name, date added, and level of priority)");
+            System.out.println(COLOR_CYAN + "           (priority levels: low, normal, or high)");
+            System.out.println(COLOR_CYAN + "           (type task name after command)");
+            System.out.println(COLOR_CYAN + "   list    List existing tasks");
+            System.out.println(COLOR_CYAN + "   edit    Edit contents of task entry (type task name after command)");
+            System.out.println(COLOR_CYAN + "   delete  Remove task from list (type task name after command)");
+            System.out.println(COLOR_CYAN + "   status  View status of task as either complete (" + CHECK_MARK + ") or in-progress (" + BULLET_MARK +")"); 
+            System.out.println(COLOR_CYAN + "           (type task name after command)\n");
         }
-
-        if (choice == 2) {
-            System.out.println(COLOR_YELLOW + "Add New Tasks, when done type done\n");
-            for (int i=0;i<MAX;i++) {
+        // 'add' command //
+        if (choice.equals(("add").toLowerCase())) {
+            System.out.println(COLOR_YELLOW + "Add new task(s), when done type done: ");
+            for (int i = 0; i < list.length; i ++) {
                 list[i] = input.nextLine();
                 if (list[i].equals("done")) break;
                 count++;
             }
+            System.out.println(COLOR_GREEN + "\nTask(s) added!");
         }
-
-        if (choice == 3) {
+        // 'list' command // 
+        if (choice.equals(("list").toLowerCase())) {
             for (int index = 0;index < list.length; index++) {
                 System.out.println(list[index]);                    
             }               
         }
+                // 'list' command // 
+                        // 'list' command //  
+                     // 'list' command // 
+        // 'list' command // 
 
     }
 
