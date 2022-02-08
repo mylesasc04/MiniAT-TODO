@@ -30,16 +30,15 @@ public static void main(String[] args) {
     String[] list = new String[MAX];
     String choice = "";
 
-    while (choice.equals("")) {
+    System.out.println();
+    System.out.println(COLOR_YELLOW + "To view list of commands type 'help' " + COLOR_RESET);
+    System.out.println(COLOR_YELLOW + "Otherwise select option: " + COLOR_RESET);
+    choice = input.next();
+    int count = 0;
 
-        System.out.println();
-        System.out.println(COLOR_YELLOW + "To view list of commands type 'help' " + COLOR_RESET);
-        System.out.println(COLOR_YELLOW + "Otherwise select option: " + COLOR_RESET);
-        choice = input.next();
-        int count = 0;
-
+    switch (choice) {
         // 'help' command //
-        if (choice.equals(("help").toLowerCase())) {
+        case "help" : 
             System.out.println(COLOR_CYAN + "Commands: \n\n" + "   help    View reference page of commands");
             System.out.println(COLOR_CYAN + "   add     Add new task (include author name, date added, and level of priority)");
             System.out.println(COLOR_CYAN + "           (priority levels: low, normal, or high)");
@@ -49,9 +48,8 @@ public static void main(String[] args) {
             System.out.println(COLOR_CYAN + "   delete  Remove task from list (type task name after command)");
             System.out.println(COLOR_CYAN + "   status  View status of task as either complete (" + CHECK_MARK + ") or in-progress (" + BULLET_MARK +")"); 
             System.out.println(COLOR_CYAN + "           (type task name after command)\n");
-        }
         // 'add' command //
-        if (choice.equals(("add").toLowerCase())) {
+        case "add" : 
             System.out.println(COLOR_YELLOW + "Add new task(s), when done type done: ");
             for (int i = 0; i < list.length; i ++) {
                 list[i] = input.nextLine();
@@ -59,18 +57,15 @@ public static void main(String[] args) {
                 count++;
             }
             System.out.println(COLOR_GREEN + "\nTask(s) added!");
-        }
         // 'list' command // 
-        if (choice.equals(("list").toLowerCase())) {
+        case "list" : 
             for (int index = 0;index < list.length; index++) {
                 System.out.println(list[index]);                    
-            }               
-        }
-                // 'list' command // 
-                        // 'list' command //  
-                     // 'list' command // 
-        // 'list' command // 
-
+            }    
+        default :      
+            System.out.println(COLOR_YELLOW + "To view list of commands type 'help' " + COLOR_RESET);
+            System.out.println(COLOR_YELLOW + "Otherwise select option: " + COLOR_RESET);
+            choice = input.next();
     }
 
 }
