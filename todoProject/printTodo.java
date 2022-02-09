@@ -56,14 +56,17 @@ public class printTodo {
         while(done) {
                 // 'help' command //
                 if(choice.equals("help")) {  
-                    System.out.println(COLOR_CYAN + "Commands: \n\n" + "   help    View reference page of commands");
+                    System.out.println(COLOR_CYAN + "Commands: \n\n");
+                    System.out.println(COLOR_CYAN + "   help    View reference page of commands");
                     System.out.println(COLOR_CYAN + "   add     Add new task (include priority, difficulty, and time length)");
                     System.out.println(COLOR_CYAN + "           (type task name after command)");
                     System.out.println(COLOR_CYAN + "   list    List existing tasks");
                     System.out.println(COLOR_CYAN + "   edit    Edit contents of task entry (type task name after command)");
                     System.out.println(COLOR_CYAN + "   delete  Remove task from list (type task name after command)");
+                    /*
                     System.out.println(COLOR_CYAN + "   status  View status of task as either complete (" + CHECK_MARK + ") or in-progress (" + BULLET_MARK +")"); 
-                    System.out.println(COLOR_CYAN + "           (type task name after command)\n" + COLOR_RESET);
+                    System.out.println(COLOR_CYAN + "           (type task name after command)\n" + COLOR_RESET); 
+                    */
                 }
                 // 'add' command //
                 if (choice.equals("add")) {
@@ -125,7 +128,7 @@ public class printTodo {
                 }
                 // 'list' command //
                 if (choice.equals("list")) {
-                    listTasks("tasks.txt");
+                    listTasks();
                 }
                 // 'edit' command //
                 if (choice.equals("edit")) {
@@ -144,43 +147,43 @@ public class printTodo {
         System.out.println(list.toString());
     }
     // 'list' method //
-    static void listTasks(String filePath) {
+    static void listTasks() {
+
+        final String COLOR_CYAN = "\u001b[36m";
+        final String BULLET_MARK = "\u2022";
+
         File file = new File("tasks.txt");
 
+        int counter = 0;
         BufferedReader reader = null;
-        FileWriter writer = null;
+
+        String line = null;
+        int rand;
         
         try
-        {
-            reader = new BufferedReader(new FileReader(file));
-            String line = reader.readLine();
-            
-            while (line != null) 
+        { reader = new BufferedReader(new FileReader(file));
+
+            String data = null;
+            List<String> taskInfo = new ArrayList<String>();
+
+            while ((data = reader.readLine()) != null)
             {
-                line = reader.readLine();
+                taskInfo.add(data);
             }
-            
-            System.out.println(reader);
-            
-            writer = new FileWriter(file);
-            
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-        finally
-        {
-            try
+            reader.close();
+
+            rand = (int) Math.random() * (taskInfo.size()) + 1;
+            line = taskInfo.get(rand - 1);
+
+            for (int i = 0; i < taskInfo.size(); i++)
             {
-                reader.close();
-                writer.close();
-            } 
-            catch (IOException e) 
-            {
-                e.printStackTrace();
+                System.out.println(COLOR_CYAN + BULLET_MARK + " " + taskInfo.get(i));
             }
+        } catch (Exception e)
+        {
+            System.out.println("File cannot be found!!");
         }
+           
     }
     // 'edit method' //
     static void modifyTasks(String filePath, String oldString, String newString) {
