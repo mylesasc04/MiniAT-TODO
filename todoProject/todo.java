@@ -1,3 +1,5 @@
+package todoProject;
+
 import java.util.Scanner;
 
 public class todo {
