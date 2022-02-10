@@ -11,24 +11,24 @@ import java.io.FileReader;
 import java.util.*;
 
 public class printTodo {
+        public static String COLOR_BLACK = "\u001b[30m";
+        public static String COLOR_RED = "\u001b[31m";
+        public static String COLOR_GREEN = "\u001b[32m";
+        public static String COLOR_YELLOW = "\u001b[33m";
+        public static String COLOR_BLUE = "\u001b[34m";
+        public static String COLOR_MAGENTA = "\u001b[35m";
+        public static String COLOR_CYAN = "\u001b[36m";
+        public static String COLOR_WHITE = "\u001b[37m";
+        public static String COLOR_RESET = "\u001b[0m";
+
+        public static String TEXT_BOLD = "\033[1m";
+        public static String TEXT_UNDERLINE = "\033[4m";
+        public static String TEXT_RESET = "\033[0m";
+        public static String CHECK_MARK = "\u2713";
+        public static String X_MARK = "\u2717";
+        public static String BULLET_MARK = "\u2022";
     public static void main(String [] args) throws IOException{
 
-        final String COLOR_BLACK = "\u001b[30m";
-        final String COLOR_RED = "\u001b[31m";
-        final String COLOR_GREEN = "\u001b[32m";
-        final String COLOR_YELLOW = "\u001b[33m";
-        final String COLOR_BLUE = "\u001b[34m";
-        final String COLOR_MAGENTA = "\u001b[35m";
-        final String COLOR_CYAN = "\u001b[36m";
-        final String COLOR_WHITE = "\u001b[37m";
-        final String COLOR_RESET = "\u001b[0m";
-
-        final String TEXT_BOLD = "\033[1m";
-        final String TEXT_UNDERLINE = "\033[4m";
-        final String TEXT_RESET = "\033[0m";
-        final String CHECK_MARK = "\u2713";
-        final String X_MARK = "\u2717";
-        final String BULLET_MARK = "\u2022";
 
         System.out.println(COLOR_YELLOW + TEXT_BOLD + "-------------------    Welcome to Pepper   -------------------" + TEXT_RESET);
         System.out.println(COLOR_YELLOW + TEXT_UNDERLINE + "The Go-To To-Do command line interface for software engineers!\n" + TEXT_RESET);
@@ -56,13 +56,13 @@ public class printTodo {
         while(done) {
                 // 'help' command //
                 if(choice.equals("help")) {  
-                    System.out.println(COLOR_CYAN + "Commands: \n\n");
-                    System.out.println(COLOR_CYAN + "   help    View reference page of commands");
-                    System.out.println(COLOR_CYAN + "   add     Add new task (include priority, difficulty, and time length)");
-                    System.out.println(COLOR_CYAN + "           (type task name after command)");
-                    System.out.println(COLOR_CYAN + "   list    List existing tasks");
-                    System.out.println(COLOR_CYAN + "   edit    Edit contents of task entry (type task name after command)");
-                    System.out.println(COLOR_CYAN + "   delete  Remove task from list (type task name after command)");
+                    System.out.println(COLOR_CYAN + "Commands: \n");
+                    System.out.println(COLOR_CYAN + "   'help'    View reference page of commands");
+                    System.out.println(COLOR_CYAN + "   'add'     Add new task (include priority, difficulty, and time length)");
+                    System.out.println(COLOR_CYAN + "             (type task name after command)");
+                    System.out.println(COLOR_CYAN + "   'list'    List existing tasks");
+                    System.out.println(COLOR_CYAN + "   'edit'    Edit contents of task entry (type task name after command)");
+                    System.out.println(COLOR_CYAN + "   'delete'  Remove task from list (type task name after command)\n");
                     /*
                     System.out.println(COLOR_CYAN + "   status  View status of task as either complete (" + CHECK_MARK + ") or in-progress (" + BULLET_MARK +")"); 
                     System.out.println(COLOR_CYAN + "           (type task name after command)\n" + COLOR_RESET); 
@@ -132,25 +132,21 @@ public class printTodo {
                 }
                 // 'edit' command //
                 if (choice.equals("edit")) {
-                    modifyTasks("tasks.txt", "task1", "TASK2");
-                }
-                
-                else {
-                    System.out.println(COLOR_YELLOW + "Select Option:" + COLOR_RESET);
-                    choice = input.next();
+                    modifyTasks();
                 }
                 // 'delete' command //
                 if (choice.equals("delete")) {
-                    // deleteTasks("tasks.txt");
+                    deleteTasks();
+                }
+                else {
+                    System.out.println(COLOR_YELLOW + "Select Option:" + COLOR_RESET);
+                    choice = input.next();
                 }
         }
         System.out.println(list.toString());
     }
     // 'list' method //
     static void listTasks() {
-
-        final String COLOR_CYAN = "\u001b[36m";
-        final String BULLET_MARK = "\u2022";
 
         File file = new File("tasks.txt");
 
@@ -177,7 +173,7 @@ public class printTodo {
 
             for (int i = 0; i < taskInfo.size(); i++)
             {
-                System.out.println(COLOR_CYAN + BULLET_MARK + " " + taskInfo.get(i));
+                System.out.println(COLOR_CYAN + " " + taskInfo.get(i));
             }
         } catch (Exception e)
         {
@@ -186,91 +182,97 @@ public class printTodo {
            
     }
     // 'edit method' //
-    static void modifyTasks(String filePath, String oldString, String newString) {
-        File fileToBeModified = new File(filePath);
-         
-        String oldContent = "";
-        BufferedReader reader = null;
-        FileWriter writer = null;
+    static void modifyTasks() throws IOException {
         
+        String filePath = "tasks.txt";
+        Scanner sc = new Scanner(new File(filePath));
+        Scanner editor = new Scanner(System.in);
+        StringBuffer buffer = new StringBuffer();
+
+        while (sc.hasNextLine()) {
+        buffer.append(sc.nextLine()+System.lineSeparator());
+        }
+        String fileContents = buffer.toString();
+        sc.close();
+
+        System.out.println(COLOR_YELLOW + "Item to edit: " + COLOR_RESET);
+        String oldLine = editor.nextLine();
+        System.out.println(COLOR_YELLOW + "Edit item to: " + COLOR_RESET);
+        String newLine = editor.nextLine();
+
+        fileContents = fileContents.replaceAll(oldLine, newLine);
+        FileWriter writer = new FileWriter(filePath);
+        System.out.println("\n" + COLOR_CYAN + oldLine + COLOR_RESET + " edited to " + COLOR_CYAN + newLine + COLOR_RESET + "\n");
+        System.out.println("Task now reads as:");
+
+        writer.append(fileContents);
+        writer.flush();
+
+        int counter = 0;
+        BufferedReader reader = null;
+
+        File file = new File("tasks.txt");
+
+        String line = null;
+        int rand;
+
         try
-        {
-            reader = new BufferedReader(new FileReader(fileToBeModified));
-            String line = reader.readLine();
-            
-            while (line != null) 
+        { reader = new BufferedReader(new FileReader(file));
+
+            String data = null;
+            List<String> taskInfo = new ArrayList<String>();
+
+            while ((data = reader.readLine()) != null)
             {
-                oldContent = oldContent + line + System.lineSeparator();
-                line = reader.readLine();
+                taskInfo.add(data);
             }
-            
-            String newContent = oldContent.replaceAll(oldString, newString);
-            
-            System.out.println(newContent);
-            
-            writer = new FileWriter(fileToBeModified);
-            
-            writer.write(newContent);
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-        finally
-        {
-            try
+            reader.close();
+
+            rand = (int) Math.random() * (taskInfo.size()) + 1;
+            line = taskInfo.get(rand - 1);
+         
+            for (int i = 0; i < taskInfo.size(); i++)
             {
-                reader.close();
-                writer.close();
-            } 
-            catch (IOException e) 
-            {
-                e.printStackTrace();
+                System.out.println(COLOR_CYAN  + " " + taskInfo.get(i));
             }
+        } catch (Exception e)
+        {
+            System.out.println("File cannot be found!!");
         }
     }
+
     // 'delete' method //
-    /*static void deleteTasks(String filePath, String deletedItem) {
-        File fileToBeModified = new File(filePath);
-         
-        String deletedItem = "";
-        BufferedReader reader = null;
-        FileWriter writer = null;
+    static void deleteTasks() throws IOException {
         
-        try
-        {
-            reader = new BufferedReader(new FileReader(fileToBeModified));
-            String line = reader.readLine();
-            
-            while (line != null) 
-            {
-                deletedItem = deletedItem + line + System.lineSeparator();
-                line = reader.readLine();
-            }
-            
-            String newContent = deleted;
-            
-            System.out.println(newContent);
-            
-            writer = new FileWriter(fileToBeModified);
-            
-            writer.write(newContent);
+        String filePath = "tasks.txt";
+        Scanner sc = new Scanner(new File(filePath));
+        Scanner editor = new Scanner(System.in);
+        StringBuffer buffer = new StringBuffer();
+
+        while (sc.hasNextLine()) {
+        buffer.append(sc.nextLine()+System.lineSeparator());
         }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-        finally
-        {
-            try
-            {
-                reader.close();
-                writer.close();
-            } 
-            catch (IOException e) 
-            {
-                e.printStackTrace();
-            }
-        }
-    } */
+        String fileContents = buffer.toString();
+        sc.close();
+
+        System.out.println(COLOR_YELLOW + "Item to delete: " + COLOR_RESET);
+        String oldLine = editor.nextLine();
+        String newLine = "";
+
+        fileContents = fileContents.replaceAll(oldLine, newLine);
+        FileWriter writer = new FileWriter(filePath);
+        System.out.println("\n" + COLOR_CYAN + oldLine + COLOR_RESET + " deleted" + "\n");
+
+        writer.append(fileContents);
+        writer.flush();
+
+        int counter = 0;
+        BufferedReader reader = null;
+
+        File file = new File("tasks.txt");
+
+        String line = null;
+        int rand;
+
+    } 
 }
