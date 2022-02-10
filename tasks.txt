@@ -1,4 +1,3 @@
-task1
 low
 easy
 short
