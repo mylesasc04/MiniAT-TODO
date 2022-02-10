@@ -91,7 +91,7 @@ public class printTodo {
                         
                         writer.close();
 
-                        System.out.println(COLOR_GREEN + "\nTask(s) added!");
+                        System.out.println(COLOR_GREEN + TEXT_BOLD + CHECK_MARK + "Task(s) added!");
 
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -202,7 +202,7 @@ public class printTodo {
 
         fileContents = fileContents.replaceAll(oldLine, newLine);
         FileWriter writer = new FileWriter(filePath);
-        System.out.println("\n" + COLOR_CYAN + oldLine + COLOR_RESET + " edited to " + COLOR_CYAN + newLine + COLOR_RESET + "\n");
+        System.out.println("\n" + COLOR_CYAN + BULLET_MARK + oldLine + COLOR_RESET + " edited to " + COLOR_CYAN + BULLET_MARK + newLine + COLOR_RESET + "\n");
         System.out.println("Task now reads as:");
 
         writer.append(fileContents);
@@ -261,7 +261,7 @@ public class printTodo {
 
         fileContents = fileContents.replaceAll(oldLine, newLine);
         FileWriter writer = new FileWriter(filePath);
-        System.out.println("\n" + COLOR_CYAN + oldLine + COLOR_RESET + " deleted" + "\n");
+        System.out.println("\n" + COLOR_CYAN + X_MARK + oldLine + COLOR_RESET + " deleted" + "\n");
 
         writer.append(fileContents);
         writer.flush();
