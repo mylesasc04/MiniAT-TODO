@@ -30,7 +30,19 @@ public class printTodo {
         final String X_MARK = "\u2717";
         final String BULLET_MARK = "\u2022";
 
-        System.out.println(COLOR_YELLOW + TEXT_BOLD + "-------------------    Welcome to Pepper   -------------------" + TEXT_RESET);
+        System.out.println(COLOR_YELLOW + TEXT_BOLD+ "                        -------------------    Welcome to Pepper   -------------------"+ TEXT_RESET);
+        System.out.println(COLOR_YELLOW + TEXT_BOLD+ " _______                                                         ________                   __ "+ TEXT_RESET);
+        System.out.println(COLOR_YELLOW + TEXT_BOLD+ "/       \\                                                       /        |                 /  |"+ TEXT_RESET);
+        System.out.println(COLOR_YELLOW + TEXT_BOLD+ "$$$$$$$  | ______    ______    ______    ______    ______       $$$$$$$$/______    ______  $$ |"+ TEXT_RESET);
+        System.out.println(COLOR_YELLOW + TEXT_BOLD+ "$$ |__$$ |/      \\  /      \\  /      \\  /      \\  /      \\  ______ $$ | /      \\  /      \\ $$ |"+ TEXT_RESET);
+        System.out.println(COLOR_YELLOW + TEXT_BOLD+ "$$    $$//$$$$$$  |/$$$$$$  |/$$$$$$  |/$$$$$$  |/$$$$$$  |/      |$$ |/$$$$$$  |/$$$$$$  |$$ |"+ TEXT_RESET);
+        System.out.println(COLOR_YELLOW + TEXT_BOLD+ "$$$$$$$/ $$    $$ |$$ |  $$ |$$ |  $$ |$$    $$ |$$ |  $$/ $$$$$$/ $$ |$$ |  $$ |$$ |  $$ |$$ |"+ TEXT_RESET);
+        System.out.println(COLOR_YELLOW + TEXT_BOLD+ "$$ |     $$$$$$$$/ $$ |__$$ |$$ |__$$ |$$$$$$$$/ $$ |              $$ |$$ \\__$$ |$$ \\__$$ |$$ |"+ TEXT_RESET);
+        System.out.println(COLOR_YELLOW + TEXT_BOLD+ "$$ |     $$       |$$    $$/ $$    $$/ $$       |$$ |              $$ |$$    $$/ $$    $$/ $$ |"+ TEXT_RESET);
+        System.out.println(COLOR_YELLOW + TEXT_BOLD+ "$$/       $$$$$$$/ $$$$$$$/  $$$$$$$/   $$$$$$$/ $$/               $$/  $$$$$$/   $$$$$$/  $$/ "+ TEXT_RESET);
+        System.out.println(COLOR_YELLOW + TEXT_BOLD+ "                   $$ |      $$ |                                                              "+ TEXT_RESET);
+        System.out.println(COLOR_YELLOW + TEXT_BOLD+ "                   $$ |      $$ |                                                              "+ TEXT_RESET);
+        System.out.println(COLOR_YELLOW + TEXT_BOLD+ "                   $$/       $$/                                                               "+ TEXT_RESET);
         System.out.println(COLOR_YELLOW + TEXT_UNDERLINE + "The Go-To To-Do command line interface for software engineers!\n" + TEXT_RESET);
 
         Scanner input = new Scanner(System.in);
@@ -76,17 +88,23 @@ public class printTodo {
                         System.out.println(COLOR_YELLOW + "Enter todo task name:" + TEXT_RESET);
                         todo = input.next();
                         writer.write(todo + "\n");
-                        
+                        do{
                         System.out.println(COLOR_YELLOW + "Enter priority of task (low, normal, high):" + TEXT_RESET);
-                        priority = input.next();               
+                        priority = input.next();
+                    } while (priority.equals("low") != true && priority.equals("normal") != true && priority.equals("high") != true);
+
                         writer.write(priority + "\n");
-                        
-                        System.out.println(COLOR_YELLOW + "Enter difficulty (easy, normal, hard):" + TEXT_RESET);
+                        do{
+                        System.out.println(COLOR_YELLOW + "Enter difficulty (easy, medium, difficult):" + TEXT_RESET);
                         difficulty = input.next();
+                    }while(difficulty.equals("easy") != true && difficulty.equals("medium") != true && difficulty.equals("difficult") != true);
+
                         writer.write(difficulty + "\n");
-                        
+                        do{
                         System.out.println(COLOR_YELLOW + "Enter the expected time length (short, long):" + TEXT_RESET);
                         timeLength = input.next();
+                    }while (timeLength.equals("short") != true && timeLength.equals("long") != true);
+
                         writer.write(timeLength + "\n");
                         
                         writer.close();
