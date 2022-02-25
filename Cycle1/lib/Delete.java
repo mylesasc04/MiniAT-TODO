@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Delete extends Pepper {
     String delete;
-    Scanner command = new Scanner(System.in);
+    Scanner command = new Scanner(System.in); 
     delete = command.next();
 
     if (delete.equals("delete")) {
@@ -58,3 +58,4 @@ public class Delete extends Pepper {
         System.out.println("Error! No command under that name");
     } 
 }
+ 
