@@ -16,7 +16,7 @@ public class AddTest {
    }   
    @Test
    public void testDueDate() {	
-      String dueDate = new String("02/24/2022");
+      String dueDate = new String("02/24/2022"); 
       Assert.assertEquals(dueDate, "02/24/2022");
       Assert.assertNotEquals(dueDate, "February 24, 2022");
    }
@@ -24,7 +24,7 @@ public class AddTest {
    public void testID() {	
       String ID = new String("1");
       Assert.assertEquals(ID, "1");
-      Assert.assertNotEquals(ID, "2");
+      Assert.assertNotEquals(ID, "3"); 
    }   
 
 }
