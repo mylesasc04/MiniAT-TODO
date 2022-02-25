@@ -5,6 +5,6 @@ public class Hash {
   public static void main(String[] args){
 
     UUID ID = UUID.randomUUID();
-    System.out.println(ID);
+    System.out.println(ID); 
   }
 }
