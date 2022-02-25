@@ -1,0 +1,6 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "c:\\Users\\Nick\\Desktop\\Spring 2022\\CS370\\Test\\opencsv-5.6.jar"
+    ]
+}
