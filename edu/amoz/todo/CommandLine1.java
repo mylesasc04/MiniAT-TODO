@@ -1,36 +1,20 @@
-<<<<<<<< HEAD:ArchSpike/CommandLine1.java
 package edu.amoz.todo;
-import java.io.*;
-import java.util.*;
-========
-package edu_amoz_todo;
 
 import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.Scanner;
->>>>>>>> 7ded1c0d02fa4ab6fcae7af06850fea7903322ec:edu.amoz.todo/CommandLine1.java
+
+import todoProject.todoItem;
+import todoProject.todoList;
 
 public class CommandLine1 {
 
-    public class JavaStringHistory {
-            private String[] history = new String[4];
-    }
     public static void main(String[] args) throws java.io.IOException {
-        final String COLOR_BLACK = "\u001b[30m";
-        final String COLOR_RED = "\u001b[31m";
-        final String COLOR_GREEN = "\u001b[32m";
         final String COLOR_YELLOW = "\u001b[33m";
-        final String COLOR_BLUE = "\u001b[34m";
-        final String COLOR_MAGENTA = "\u001b[35m";
         final String COLOR_CYAN = "\u001b[36m";
-        final String COLOR_WHITE = "\u001b[37m";
-        final String COLOR_RESET = "\u001b[0m";
-
         final String TEXT_BOLD = "\033[1m";
         final String TEXT_UNDERLINE = "\033[4m";
         final String TEXT_RESET = "\033[0m";
-        final String CHECK_MARK = "\u2713";
-        final String X_MARK = "\u2717";
-        final String BULLET_MARK = "\u2022";
         String todo = "";
         String priority = "";
         String difficulty = "";
@@ -39,8 +23,21 @@ public class CommandLine1 {
         int i = 0;
         todoList list = new todoList();
 
-        System.out.println(COLOR_YELLOW + TEXT_BOLD + "-------------------    Welcome to Pepper   -------------------" + TEXT_RESET);
-        System.out.println(COLOR_YELLOW + TEXT_UNDERLINE + "The Go-To To-Do command line interface for software engineers!\n" + TEXT_RESET);
+        System.out.println(COLOR_YELLOW + TEXT_BOLD + "                        -------------------    Welcome to Pepper   -------------------" + TEXT_RESET);
+        System.out.println(COLOR_YELLOW + TEXT_BOLD + " _______                                                         ________                   __ " + TEXT_RESET);
+        System.out.println(COLOR_YELLOW + TEXT_BOLD + "/       \\                                                       /        |                 /  |" + TEXT_RESET);
+        System.out.println(COLOR_YELLOW + TEXT_BOLD + "$$$$$$$  | ______    ______    ______    ______    ______       $$$$$$$$/______    ______  $$ |" + TEXT_RESET);
+        System.out.println(COLOR_YELLOW + TEXT_BOLD + "$$ |__$$ |/      \\  /      \\  /      \\  /      \\  /      \\  ______ $$ | /      \\  /      \\ $$ |" + TEXT_RESET);
+        System.out.println(COLOR_YELLOW + TEXT_BOLD + "$$    $$//$$$$$$  |/$$$$$$  |/$$$$$$  |/$$$$$$  |/$$$$$$  |/      |$$ |/$$$$$$  |/$$$$$$  |$$ |" + TEXT_RESET);
+        System.out.println(COLOR_YELLOW + TEXT_BOLD + "$$$$$$$/ $$    $$ |$$ |  $$ |$$ |  $$ |$$    $$ |$$ |  $$/ $$$$$$/ $$ |$$ |  $$ |$$ |  $$ |$$ |" + TEXT_RESET);
+        System.out.println(COLOR_YELLOW + TEXT_BOLD + "$$ |     $$$$$$$$/ $$ |__$$ |$$ |__$$ |$$$$$$$$/ $$ |              $$ |$$ \\__$$ |$$ \\__$$ |$$ |" + TEXT_RESET);
+        System.out.println(COLOR_YELLOW + TEXT_BOLD + "$$ |     $$       |$$    $$/ $$    $$/ $$       |$$ |              $$ |$$    $$/ $$    $$/ $$ |" + TEXT_RESET);
+        System.out.println(COLOR_YELLOW + TEXT_BOLD + "$$/       $$$$$$$/ $$$$$$$/  $$$$$$$/   $$$$$$$/ $$/               $$/  $$$$$$/   $$$$$$/  $$/ "+ TEXT_RESET);
+        System.out.println(COLOR_YELLOW + TEXT_BOLD + "                   $$ |      $$ |                                                              " + TEXT_RESET);
+        System.out.println(COLOR_YELLOW + TEXT_BOLD + "                   $$ |      $$ |                                                              " + TEXT_RESET);
+        System.out.println(COLOR_YELLOW + TEXT_BOLD + "                   $$/       $$/                                                               " + TEXT_RESET);
+
+        System.out.println(COLOR_YELLOW + "                        " + TEXT_UNDERLINE + "The Go-To To-Do command line interface for software engineers!\n" + TEXT_RESET);
 
         Scanner input = new Scanner(System.in);
         String commandLine;
@@ -66,7 +63,9 @@ public class CommandLine1 {
                 //  history[0] = commandLine
             }
             //help command
-
+            if(commandLine.equals("help")) {
+                System.out.println(COLOR_CYAN + TEXT_BOLD + "COMMANDS: \n help: displays this help page. \n add: adds a new todo list item. \n exit: exits the program. \n clear: clears the current screen.\n" + TEXT_RESET);
+            }
             if(commandLine.equals("clear")) {
 
                for( int cls = 0; cls < 10; cls++ ) {
@@ -74,16 +73,23 @@ public class CommandLine1 {
                }
             }
 
+
             if(commandLine.equals("add")) {
                 while(done) {
                     System.out.println("Enter thing todo: ");
-                    todo = input.nextLine();
-                    System.out.println("Enter priority (low, normal, high): ");
-                    priority = input.next();
-                    System.out.println("Enter difficulty (easy, normal, hard): ");
-                    difficulty = input.next();
-                    System.out.println("Enter the expected time length (short, long): ");
-                    timeLength = input.next();
+                    todo = input.next();
+                        do{
+                            System.out.println("Enter priority (low, normal, high): ");
+                            priority = input.next();
+                }while(priority.equals("low") != true && priority.equals("normal") != true && priority.equals("high") != true);
+                do {
+                            System.out.println("Enter difficulty (easy, medium, difficult): ");
+                            difficulty = input.next();
+               }while(difficulty.equals("easy") != true && difficulty.equals("medium") != true && difficulty.equals("difficult") != true);
+                do{
+                            System.out.println("Enter the expected time length (short, long): ");
+                            timeLength = input.next();
+                            }while(timeLength.equals("short") != true && timeLength.equals("long") != true);
 
                     switch(i) {
                         case 0:
@@ -114,7 +120,7 @@ public class CommandLine1 {
                         default:
                         break;
                     }
-        
+
                     System.out.println("Would you like to add more things todo? (true for yes, false for no): ");
                     done = input.nextBoolean();
                     i++;
@@ -128,7 +134,6 @@ public class CommandLine1 {
             if (commandLine.endsWith(".java")) {
               if(commandLine.startsWith("cat")) {
                 System.out.println("test");
-                ProcessBuilder pb = new ProcessBuilder();
                 //pb = new ProcessBuilder(commandLine);
               }
 
