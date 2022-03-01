@@ -7,55 +7,60 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class Delete extends Pepper {
+    
     String delete;
-    Scanner command = new Scanner(System.in); 
-    delete = command.next();
+    Boolean validDelete = false;
 
-    if (delete.equals("delete")) {
+    while (!validDelete) {
         final Scanner x;
+        Scanner command = new Scanner(System.in);
+        delete = command.next();
 
-        String filePath = "tasks.csv";
-        String removeTask = "";
-        Scanner input = new Scanner(System.in);
-        removeTask = input.next();
-    
-        String tempFile = "temp.csv";
-        File oldFile = new File(filePath);
-        File newFile = new File(tempFile);
-        String ID = ""; String dueDate = ""; String description= "";
+        if (delete.contains("delete ")) {
+            validDelete = true;
+            String filePath = "tasks.csv";
+            String removeTask = "";
+            Scanner input = new Scanner(System.in);
+            removeTask = input.next();
         
-    
-        try {
-            FileWriter fw = new FileWriter(tempFile, true);
-            BufferedWriter bw = new BufferedWriter(fw);
-            PrintWriter pw = new PrintWriter(bw);
-            x = new Scanner(new File(filePath));
-            x.useDelimiter(",");
+            String tempFile = "temp.csv";
+            File oldFile = new File(filePath);
+            File newFile = new File(tempFile);
+            String ID = ""; String dueDate = ""; String description= "";
+            
         
-            while(x.hasNext()) {
-                description = x.next();
-                dueDate = x.next();
-                ID = x.next();
-    
-                if(!ID.equals(removeTask)){
-                    pw.println(description + "," + dueDate + "," + ID);
+            try {
+                FileWriter fw = new FileWriter(tempFile, true);
+                BufferedWriter bw = new BufferedWriter(fw);
+                PrintWriter pw = new PrintWriter(bw);
+                x = new Scanner(new File(filePath));
+                x.useDelimiter(",");
+            
+                while(x.hasNext()) {
+                    description = x.next();
+                    dueDate = x.next();
+                    ID = x.next();
+        
+                    if(!ID.equals(removeTask)){
+                        pw.println(description + "," + dueDate + "," + ID);
+                    }
                 }
+                x.close();
+                pw.flush();
+                pw.close();
+                oldFile.delete();
+                File dump = new File(filePath);
+                newFile.renameTo(dump);
+                System.out.println("Task deleted");
+                return;
             }
-            x.close();
-            pw.flush();
-            pw.close();
-            oldFile.delete();
-            File dump = new File(filePath);
-            newFile.renameTo(dump);
-            System.out.println("Task deleted");
-            return;
+            catch(Exception e) {
+                System.out.println("Error! No task with that ID");
+            }
         }
-        catch(Exception e) {
-            System.out.println("Error! No task with that ID");
-        }
+        else {
+            System.out.println("Error! No command under that name");
+        } 
     }
-    else {
-        System.out.println("Error! No command under that name");
-    } 
 }
  
