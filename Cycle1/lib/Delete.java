@@ -6,15 +6,16 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-public class Delete extends Pepper {
+public class Delete {
     
     String delete;
-    Boolean validDelete = false;
+    Boolean validDelete = false; {
 
     while (!validDelete) {
         final Scanner x;
         Scanner command = new Scanner(System.in);
         delete = command.next();
+        command.close();
 
         if (delete.contains("delete ")) {
             validDelete = true;
@@ -22,11 +23,12 @@ public class Delete extends Pepper {
             String removeTask = "";
             Scanner input = new Scanner(System.in);
             removeTask = input.next();
+            input.close();
         
             String tempFile = "temp.csv";
             File oldFile = new File(filePath);
             File newFile = new File(tempFile);
-            String ID = ""; String dueDate = ""; String description= "";
+            String ID = ""; String dueDate = ""; String description = "";
             
         
             try {
@@ -52,7 +54,6 @@ public class Delete extends Pepper {
                 File dump = new File(filePath);
                 newFile.renameTo(dump);
                 System.out.println("Task deleted");
-                return;
             }
             catch(Exception e) {
                 System.out.println("Error! No task with that ID");
@@ -62,5 +63,6 @@ public class Delete extends Pepper {
             System.out.println("Error! No command under that name");
         } 
     }
+} 
 }
  
