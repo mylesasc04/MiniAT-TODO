@@ -6,20 +6,16 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-public class Delete {
-    
+public class Delete { 
     String delete;
-    Boolean validDelete = false; {
+    Scanner command = new Scanner(System.in);
+    delete = command.next();
+    command.close();
 
-    while (!validDelete) {
-        final Scanner x;
-        Scanner command = new Scanner(System.in);
-        delete = command.next();
-        command.close();
-
+    while (!command.equals("delete")) {
         if (delete.contains("delete ")) {
-            validDelete = true;
-            String filePath = "tasks.csv";
+            Scanner x;
+            String filePath = "George.csv";
             String removeTask = "";
             Scanner input = new Scanner(System.in);
             removeTask = input.next();
@@ -28,7 +24,7 @@ public class Delete {
             String tempFile = "temp.csv";
             File oldFile = new File(filePath);
             File newFile = new File(tempFile);
-            String ID = ""; String dueDate = ""; String description = "";
+            String name = ""; String priority = ""; String difficulty = ""; String timeLength = "";
             
         
             try {
@@ -36,15 +32,16 @@ public class Delete {
                 BufferedWriter bw = new BufferedWriter(fw);
                 PrintWriter pw = new PrintWriter(bw);
                 x = new Scanner(new File(filePath));
-                x.useDelimiter(",");
+                x.useDelimiter("[,\n]");
             
                 while(x.hasNext()) {
-                    description = x.next();
-                    dueDate = x.next();
-                    ID = x.next();
+                    name = x.next();
+                    priority = x.next();
+                    difficulty = x.next();
+                    timeLength = x.next();
         
-                    if(!ID.equals(removeTask)){
-                        pw.println(description + "," + dueDate + "," + ID);
+                    if(!name.equals(removeTask)){
+                        pw.println(name + "," + priority + "," + difficulty + "," + timeLength);
                     }
                 }
                 x.close();
@@ -64,5 +61,4 @@ public class Delete {
         } 
     }
 } 
-}
  
