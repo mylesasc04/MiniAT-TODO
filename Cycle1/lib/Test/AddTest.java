@@ -9,22 +9,27 @@ public class AddTest {
 
  
    @Test
-   public void testDescription() {	
-      String description = new String("Get milk");
-      Assert.assertEquals(description, "Get milk");   
-      Assert.assertNotEquals(description, "Get mikl");
+   public void testName() {	
+      String name = new String("task3");
+      Assert.assertEquals(name, "task3");   
+      Assert.assertNotEquals(name, "Task3");
    }   
    @Test
-   public void testDueDate() {	
-      String dueDate = new String("02/24/2022"); 
-      Assert.assertEquals(dueDate, "02/24/2022");
-      Assert.assertNotEquals(dueDate, "February 24, 2022");
+   public void testPriority() {	
+      String priority = new String("low"); 
+      Assert.assertEquals(priority, "low");
+      Assert.assertNotEquals(priority, "Low");
    }
    @Test
-   public void testID() {	
-      String ID = new String("1");
-      Assert.assertEquals(ID, "1");
-      Assert.assertNotEquals(ID, "3"); 
+   public void testDifficulty() {	
+      String difficulty = new String("easy");
+      Assert.assertEquals(difficulty, "easy");
+      Assert.assertNotEquals(difficulty, "dificukt"); 
    }   
-
+   @Test
+   public void testTimeLength() {	
+      String timeLength = new String("3hrs");
+      Assert.assertEquals(timeLength, "3hrs");   
+      Assert.assertNotEquals(timeLength, "3HRS");
+   }   
 }
