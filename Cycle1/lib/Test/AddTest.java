@@ -28,8 +28,8 @@ public class AddTest {
    }   
    @Test
    public void testTimeLength() {	
-      String timeLength = new String("3hrs");
-      Assert.assertEquals(timeLength, "3hrs");   
-      Assert.assertNotEquals(timeLength, "3HRS");
+      String timeLength = new String("long");
+      Assert.assertEquals(timeLength, "long");   
+      Assert.assertNotEquals(timeLength, "3hrs");
    }   
 }

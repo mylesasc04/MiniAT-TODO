@@ -1,5 +1,6 @@
 package Cycle1.lib;
 
+import com.opencsv.CSVWriter;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -7,13 +8,12 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class Delete { 
-    String delete;
-    Scanner command = new Scanner(System.in);
-    delete = command.next();
-    command.close();
+    public static void main (String [] args) {
+        String delete;
+        Scanner command = new Scanner(System.in); {
+        delete = command.next();
 
-    while (!command.equals("delete")) {
-        if (delete.contains("delete ")) {
+        if (delete.contains("delete")) {
             Scanner x;
             String filePath = "George.csv";
             String removeTask = "";
@@ -59,6 +59,8 @@ public class Delete {
         else {
             System.out.println("Error! No command under that name");
         } 
+        command.close();
+    }
     }
 } 
  
