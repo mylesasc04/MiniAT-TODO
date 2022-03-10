@@ -1,4 +1,4 @@
-::msg * " Welcome to Pepper, The Go-To To-Do command line interface for software engineers!"
+msg * " Welcome to Pepper, The Go-To To-Do command line interface for software engineers!"
 
 
 echo %DATE%
