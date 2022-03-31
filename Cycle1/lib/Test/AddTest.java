@@ -7,10 +7,9 @@ import org.testng.TestNG;
 
 public class AddTest {
 
- 
    @Test
    public void testName() {	
-      String name = new String("task3");
+      String name = new String();
       Assert.assertEquals(name, "task3");   
       Assert.assertNotEquals(name, "Task3");
    }   

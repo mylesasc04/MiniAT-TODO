@@ -1,3 +1,5 @@
+package Cycle1.lib;
+
 public class Pepper 
 {
     public static String COLOR_BLACK = "\u001b[30m";
