@@ -2,6 +2,9 @@ package Cycle1.lib;
 import com.opencsv.CSVWriter;
 import java.io.*;
 import java.util.*;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 public class AddTodoTest{
     public static void doWrite() throws IOException {
@@ -11,8 +14,19 @@ public class AddTodoTest{
         String priority;
         String difficulty;
         String timeLength;
+        String timeStr;
         CSVWriter writer = new CSVWriter(new FileWriter(filen, true));
         Scanner input = new Scanner(System.in);
+
+        // Creates the formatter which interprets the system clock in a readable way.
+        DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)
+                .withLocale(Locale.US)
+                .withZone(ZoneId.systemDefault());
+        // Creates an instant of the clock at runtime, then converts it to a string.
+        Instant instant = Instant.now();
+        String instantStr = formatter.format(instant);
+        // Appends another string with all info for the csv.
+        timeStr = "Task created on: " + instantStr;
 
         System.out.println("What task are you trying to add?");
         name = input.nextLine();
@@ -56,7 +70,7 @@ public class AddTodoTest{
 
         System.out.println("Task added!");
 
-        String[] todoItem = new String[] { name, priority, difficulty, timeLength };
+        String[] todoItem = new String[] { name, priority, difficulty, timeLength, timeStr };
 
         writer.writeNext(todoItem);
         writer.close();
