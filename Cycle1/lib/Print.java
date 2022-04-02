@@ -1,5 +1,6 @@
 package Cycle1.lib;
 
+
 import com.opencsv.*;
 import com.opencsv.exceptions.CsvException;
 
@@ -11,6 +12,7 @@ public class Print {
         PrintList();
     }
 
+    
     public static void PrintList() throws FileNotFoundException, IOException, CsvException {
         CSVReader reader = new CSVReader(new FileReader("todo.csv"));
         List<String[]> list = new ArrayList<>();

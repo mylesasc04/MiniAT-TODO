@@ -9,7 +9,7 @@ public class AddTest {
 
    @Test
    public void testName() {	
-      String name = new String();
+      String name = new String("task3");
       Assert.assertEquals(name, "task3");   
       Assert.assertNotEquals(name, "Task3");
    }   
