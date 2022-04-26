@@ -14,7 +14,7 @@ public class Print {
 
     
     public static void PrintList() throws FileNotFoundException, IOException, CsvException {
-        CSVReader reader = new CSVReader(new FileReader("todo.csv"));
+        CSVReader reader = new CSVReader(new FileReader("George.csv"));
         List<String[]> list = new ArrayList<>();
 
         list = reader.readAll();
