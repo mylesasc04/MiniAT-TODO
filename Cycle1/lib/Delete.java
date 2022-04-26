@@ -9,11 +9,6 @@ import java.util.Scanner;
 
 public class Delete { 
     public static void main (String [] args) {
-        String delete;
-        Scanner command = new Scanner(System.in); {
-        delete = command.next();
-
-        if (delete.contains("delete")) {
             Scanner x;
             String filePath = "George.csv";
             String removeTask = "";
@@ -55,12 +50,6 @@ public class Delete {
             catch(Exception e) {
                 System.out.println("Error! No task with that ID");
             }
-        }
-        else {
-            System.out.println("Error! No command under that name");
         } 
-        command.close();
-    }
-    }
 } 
  

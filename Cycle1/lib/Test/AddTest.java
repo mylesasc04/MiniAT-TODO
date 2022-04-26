@@ -7,7 +7,6 @@ import org.testng.TestNG;
 
 public class AddTest {
 
- 
    @Test
    public void testName() {	
       String name = new String("task3");
