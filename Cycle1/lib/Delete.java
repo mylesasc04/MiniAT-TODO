@@ -7,11 +7,20 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
+import org.fusesource.jansi.AnsiConsole;
+import static org.fusesource.jansi.Ansi.*;
+import static org.fusesource.jansi.Ansi.Color.*;
+
+
 public class Delete { 
-    public static void main (String [] args) {
+    public static void main (String [] args) { 
+            
+            AnsiConsole.systemInstall(); 
             Scanner x;
+            String checkmark = "✓";
+            String x_mark = "✗";
             String filePath = "George.csv";
-            String removeTask = "";
+            String removeTask = ""; 
             Scanner input = new Scanner(System.in);
             removeTask = input.next();
             input.close();
@@ -45,11 +54,12 @@ public class Delete {
                 oldFile.delete();
                 File dump = new File(filePath);
                 newFile.renameTo(dump);
-                System.out.println("Task deleted");
+                System.out.println(ansi().fg(GREEN).a(checkmark + " Task deleted").reset());
             }
             catch(Exception e) {
-                System.out.println("Error! No task with that ID");
+                System.out.println(ansi().fg(RED).a(x_mark + " Error! No task with that name").reset());
             }
+            AnsiConsole.systemUninstall();
         } 
 } 
  

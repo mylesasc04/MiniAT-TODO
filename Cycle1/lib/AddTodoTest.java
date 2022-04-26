@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
 public class AddTodoTest{
-    public static void doWrite() throws IOException {
+    public static String[] doWrite() throws IOException {
 
         String filen = "George.csv";
         String name;
@@ -36,7 +36,7 @@ public class AddTodoTest{
         if (nameCommaDetector != -1) {
             System.out.println("Hey! No commas please!");
             input.close();
-            return;
+            return null;
         }
 
         System.out.println("What's the Priority?");
@@ -46,7 +46,7 @@ public class AddTodoTest{
         if (priorityCommaDetector != -1) {
             System.out.println("Hey! No commas please!");
             input.close();
-            return;
+            return null;
         }
 
         System.out.println("What's the Difficulty?");
@@ -56,7 +56,7 @@ public class AddTodoTest{
         if (difficultyCommaDetector != -1) {
             System.out.println("Hey! No commas please!");
             input.close();
-            return;
+            return null;
         }
 
         System.out.println("How Long is it going to take?");
@@ -66,7 +66,7 @@ public class AddTodoTest{
         if (timeCommaDetector != -1) {
             System.out.println("Hey! No commas please!");
             input.close();
-            return;
+            return null;
         }
 
         System.out.println("Task added!");
@@ -76,7 +76,7 @@ public class AddTodoTest{
         writer.writeNext(todoItem);
         writer.close();
         input.close();
-        return;
+        return todoItem;
     }
 
     public static void main(String[] args) throws IOException {
